@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medication Reminder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script>
+        // Create and show styled popup
+        function showPopup(message) {
+            const box = document.createElement('div');
+            box.className = 'alert-box';
+            box.textContent = message;
+            document.body.appendChild(box);
+            setTimeout(() => box.remove(), 5000);
+        }
+
+        // Check reminders every 60 seconds
+        setInterval(() => {
+            fetch('/check_reminders')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        const names = data.map(r => r.name).join(', ');
+                        showPopup("⏰ Time to take: " + names);
+                    }
+                });
+        }, 60000); // every 60 seconds
+    </script>
+</head>
+<body>
+<div class="container">
+    <h2>Medication Reminder</h2>
+    <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="Medication name" required>
+        <input type="time" name="time" required>
+        <select name="repeat">
+            <option value="none">Once</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+        </select>
+        <button type="submit">Add Reminder</button>
+    </form>
+
+    <h3>Scheduled Reminders</h3>
+    {% if reminders %}
+        {% for reminder in reminders %}
+            <div class="reminder">
+                <strong>{{ reminder.name }}</strong> at {{ reminder.time }} ({{ reminder.repeat }})
+                <div>
+                    <a href="/edit/{{ reminder.id }}">Edit</a> |
+                    <a href="/delete/{{ reminder.id }}">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No reminders scheduled.</p>
+    {% endif %}
+</div>
+</body>
+</html>

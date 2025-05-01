@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Reminder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Edit Reminder</h2>
+    <form method="POST">
+        <input type="text" name="name" value="{{ reminder.name }}" required>
+        <input type="time" name="time" value="{{ reminder.time }}" required>
+        <select name="repeat">
+            <option value="none" {% if reminder.repeat == 'none' %}selected{% endif %}>Once</option>
+            <option value="daily" {% if reminder.repeat == 'daily' %}selected{% endif %}>Daily</option>
+        </select>
+        <button type="submit">Update</button>
+    </form>
+</div>
+</body>
+</html>

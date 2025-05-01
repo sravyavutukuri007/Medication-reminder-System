@@ -1,0 +1,80 @@
+body {
+    background-color: #fef6e4;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #001858;
+}
+
+.container {
+    max-width: 650px;
+    margin: 40px auto;
+    background-color: #f3d2c1;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+h2, h3 {
+    color: #001858;
+}
+
+input, select, button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+input, select {
+    background-color: #fff1e6;
+}
+
+button {
+    background-color: #8bd3dd;
+    color: #001858;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5ec4d4;
+}
+
+.reminder {
+    background-color: #f582ae;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.reminder a {
+    color: #001858;
+    text-decoration: none;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.reminder a:hover {
+    text-decoration: underline;
+}
+
+.alert-box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f582ae;
+    color: #001858;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    font-weight: bold;
+    z-index: 9999;
+    animation: fadeInOut 5s;
+}
